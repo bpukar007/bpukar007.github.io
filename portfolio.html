@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pukar Budhathoki — Python & AI Automation Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-light: #eff6ff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --white: #ffffff;
+            --bg: #f8fafc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-name {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .hero-tagline span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1.5px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ABOUT */
+        #about {
+            background: var(--bg);
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .about-card-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .journey-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .journey-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .journey-text {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .journey-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* SKILLS */
+        #skills {
+            background: var(--white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: all 0.2s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .skill-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .skill-level {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+        }
+
+        /* PROJECTS */
+        #projects {
+            background: var(--bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .project-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTACT */
+        #contact {
+            background: var(--primary);
+        }
+
+        #contact .section-label {
+            color: #93c5fd;
+        }
+
+        #contact .section-title {
+            color: var(--white);
+        }
+
+        .contact-sub {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .contact-btn.white {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .contact-btn.white:hover {
+            background: #f1f5f9;
+            transform: translateY(-1px);
+        }
+
+        .contact-btn.outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid #334155;
+        }
+
+        .contact-btn.outline:hover {
+            border-color: #64748b;
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            border-top: 1px solid #1e293b;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">Pukar Budhathoki</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Available for international work</span>
+                <h1 class="hero-name">Pukar<br>Budhathoki</h1>
+                <p class="hero-tagline">
+                    Turning ideas into code <span>from Nepal to the world.</span><br>
+                    Python developer & AI Automation specialist building solutions for international businesses.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">Work with me</a>
+                    <a href="https://github.com/bpukar007" target="_blank" class="btn-outline">View GitHub</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Years old</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Commitment</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Hunger to grow</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="section-label">About me</p>
+                    <h2 class="section-title">Built from discipline, not privilege.</h2>
+                    <p>I'm a 17-year-old self-taught developer from Kathmandu, Nepal. No connections. No shortcuts. Just
+                        a daily 4:30 AM alarm, a notebook full of ideas, and an obsession with building things that
+                        matter.</p>
+                    <p>I specialize in Python and AI Automation — helping businesses eliminate repetitive tasks, save
+                        time, and scale faster using the power of intelligent systems.</p>
+                    <p>I document every step of my journey publicly. What I lack in years of experience, I make up for
+                        in hunger, discipline, and the willingness to outwork everyone in the room.</p>
+                </div>
+                <div class="about-card">
+                    <p class="about-card-title">My Journey</p>
+                    <div class="journey-item">
+                        <div class="journey-dot"></div>
+                        <div>
+                            <div class="journey-text">Started learning Python & AI Automation from zero</div>
+                            <div class="journey-date">April 2026 — Day 1</div>
+                        </div>
+                    </div>
+                    <div class="journey-item">
+                        <div class="journey-dot"></div>
+                        <div>
+                            <div class="journey-text">Built first frontend projects with HTML, CSS & JavaScript</div>
+                            <div class="journey-date">2025 — Foundation</div>
+                        </div>
+                    </div>
+                    <div class="journey-item">
+                        <div class="journey-dot"></div>
+                        <div>
+                            <div class="journey-text">Committed to 3+ hours of daily skill building every day</div>
+                            <div class="journey-date">Daily — Non negotiable</div>
+                        </div>
+                    </div>
+                    <div class="journey-item">
+                        <div class="journey-dot"></div>
+                        <div>
+                            <div class="journey-text">Goal: First international client within 6 months</div>
+                            <div class="journey-date">2026 — Target</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+            <p class="section-label">What I bring</p>
+            <h2 class="section-title">Skills & tools</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🐍</div>
+                    <div class="skill-name">Python</div>
+                    <div class="skill-desc">Building scripts, automation tools, and backend logic that solves real
+                        business problems efficiently.</div>
+                    <span class="skill-level">In progress</span>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-name">AI Automation</div>
+                    <div class="skill-desc">Designing intelligent workflows using AI APIs and automation platforms to
+                        eliminate manual work.</div>
+                    <span class="skill-level">In progress</span>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🧩</div>
+                    <div class="skill-name">Problem Solving</div>
+                    <div class="skill-desc">Breaking down complex challenges into clear, structured solutions that
+                        actually work in the real world.</div>
+                    <span class="skill-level">Core strength</span>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <div class="skill-name">Frontend Basics</div>
+                    <div class="skill-desc">Building clean, responsive interfaces with HTML, CSS, and JavaScript to
+                        complement backend solutions.</div>
+                    <span class="skill-level">Solid foundation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <p class="section-label">My work</p>
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-tag">Frontend</div>
+                    <div class="project-name">Frontend Project</div>
+                    <div class="project-desc">A frontend web project built with HTML, CSS, and JavaScript. Clean
+                        interface, real code, real execution.</div>
+                    <a href="https://github.com/bpukar007" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-tag">Python</div>
+                    <div class="project-name">Python Journey</div>
+                    <div class="project-desc">Daily Python practice repository — variables, functions, conditions,
+                        loops, and growing every single day from Day 1.</div>
+                    <a href="https://github.com/bpukar007" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+                <div class="project-card">
+                    <div class="project-tag">Coming soon</div>
+                    <div class="project-name">First AI Automation</div>
+                    <div class="project-desc">An AI-powered automation tool for a real business problem. Currently in
+                        development. Check back soon.</div>
+                    <a href="https://github.com/bpukar007" target="_blank" class="project-link">Follow progress →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <p class="section-label">Let's connect</p>
+            <h2 class="section-title">Work with me.</h2>
+            <p class="contact-sub">I'm open to junior projects, collaborations, and opportunities to deliver real
+                results for international clients.</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/pukar-budhathoki-b70b85405/" target="_blank"
+                    class="contact-btn white">LinkedIn</a>
+                <a href="https://github.com/bpukar007" target="_blank" class="contact-btn outline">GitHub</a>
+                <a href="https://www.upwork.com/freelancers/~017228f074c44f4f2f" target="_blank"
+                    class="contact-btn outline">Upwork</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Built by Pukar Budhathoki — Kathmandu, Nepal — 2026</p>
+    </footer>
+
+</body>
+
+</html>
